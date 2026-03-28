@@ -29,6 +29,14 @@ bash run.sh --root runtime/dual-3090 --python-tool uv
 
 This bootstrap flow creates a self-contained runtime folder, clones `vllm` and `llama.cpp`, installs `benchllm`, prepares runtime launchers, and leaves you with generated scripts under `runtime/dual-3090/launchers/`.
 
+For a no-argument installer suitable for `curl | bash`, use:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/keerekeerweere/benchllm/main/install.sh | sudo bash
+```
+
+It defaults to `/opt/benchllm` under `sudo`, clones this repo, creates `/opt/benchllm/.env`, and then runs the normal bootstrap flow.
+
 ## Notes
 
 - The tool assumes an OpenAI-compatible local endpoint for inference.

@@ -5,6 +5,27 @@ from pathlib import Path
 
 
 class BootstrapScriptTest(unittest.TestCase):
+    def test_install_sh_dry_run_uses_repo_default_without_params(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir) / "stack"
+            proc = subprocess.run(
+                ["bash", "install.sh"],
+                cwd="/home/dbram/work/benchllm",
+                check=False,
+                capture_output=True,
+                text=True,
+                env={
+                    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                    "INSTALL_DRY_RUN": "1",
+                    "BENCHLLM_INSTALL_ROOT": str(root),
+                },
+            )
+
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        self.assertIn("git clone https://github.com/keerekeerweere/benchllm", proc.stdout)
+        self.assertIn("bash", proc.stdout)
+        self.assertIn("run.sh --root", proc.stdout)
+
     def test_run_sh_dry_run_supports_uv(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir) / "stack"
