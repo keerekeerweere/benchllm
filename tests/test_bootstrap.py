@@ -90,9 +90,12 @@ class BootstrapScriptTest(unittest.TestCase):
             )
 
         self.assertEqual(proc.returncode, 0, proc.stderr)
+        self.assertIn("uv python install 3.12", proc.stdout)
         self.assertIn("uv venv", proc.stdout)
-        self.assertIn("git clone https://github.com/vllm-project/vllm.git", proc.stdout)
+        self.assertNotIn("git clone https://github.com/vllm-project/vllm.git", proc.stdout)
         self.assertIn("git clone https://github.com/ggml-org/llama.cpp.git", proc.stdout)
+        self.assertIn("uv pip install --python", proc.stdout)
+        self.assertIn(" vllm", proc.stdout)
         self.assertIn("python -m benchllm prepare", proc.stdout)
 
     def test_run_sh_dry_run_falls_back_to_venv_when_uv_missing(self) -> None:

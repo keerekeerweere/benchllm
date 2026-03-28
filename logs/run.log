@@ -1,0 +1,368 @@
+Downloading torch_c_dlpack_ext-0.1.5-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (755 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 755.0/755.0 kB 9.2 MB/s  0:00:00
+Building wheels for collected packages: vllm
+  Building editable for vllm (pyproject.toml) ... error
+  error: subprocess-exited-with-error
+  
+  × Building editable for vllm (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [349 lines of output]
+      /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/_subclasses/functional_tensor.py:283: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+        cpu = _conversion_method_template(device=torch.device("cpu"))
+      /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools_scm/_integration/version_inference.py:151: UserWarning: version of None already set
+        warnings.warn(f"version of {self.dist_name} already set")
+      running editable_wheel
+      creating /tmp/pip-ephem-wheel-cache-8za4vu_q/wheels/52/10/2e/99354ac41731548a5dce7838546d541efc472f74ba68e84339/tmp0lrjcejx/.tmp-xhqrz3jc/vllm.egg-info
+      writing /tmp/pip-ephem-wheel-cache-8za4vu_q/wheels/52/10/2e/99354ac41731548a5dce7838546d541efc472f74ba68e84339/tmp0lrjcejx/.tmp-xhqrz3jc/vllm.egg-info/PKG-INFO
+      writing dependency_links to /tmp/pip-ephem-wheel-cache-8za4vu_q/wheels/52/10/2e/99354ac41731548a5dce7838546d541efc472f74ba68e84339/tmp0lrjcejx/.tmp-xhqrz3jc/vllm.egg-info/dependency_links.txt
+      writing entry points to /tmp/pip-ephem-wheel-cache-8za4vu_q/wheels/52/10/2e/99354ac41731548a5dce7838546d541efc472f74ba68e84339/tmp0lrjcejx/.tmp-xhqrz3jc/vllm.egg-info/entry_points.txt
+      writing requirements to /tmp/pip-ephem-wheel-cache-8za4vu_q/wheels/52/10/2e/99354ac41731548a5dce7838546d541efc472f74ba68e84339/tmp0lrjcejx/.tmp-xhqrz3jc/vllm.egg-info/requires.txt
+      writing top-level names to /tmp/pip-ephem-wheel-cache-8za4vu_q/wheels/52/10/2e/99354ac41731548a5dce7838546d541efc472f74ba68e84339/tmp0lrjcejx/.tmp-xhqrz3jc/vllm.egg-info/top_level.txt
+      writing manifest file '/tmp/pip-ephem-wheel-cache-8za4vu_q/wheels/52/10/2e/99354ac41731548a5dce7838546d541efc472f74ba68e84339/tmp0lrjcejx/.tmp-xhqrz3jc/vllm.egg-info/SOURCES.txt'
+      /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/vcs_versioning/overrides.py:609: UserWarning: No GlobalOverrides context is active. Auto-creating one with SETUPTOOLS_SCM prefix for backwards compatibility. Consider using 'with GlobalOverrides.from_env("YOUR_TOOL"):' explicitly.
+        return get_active_overrides().subprocess_timeout
+      reading manifest template 'MANIFEST.in'
+      adding license file 'LICENSE'
+      writing manifest file '/tmp/pip-ephem-wheel-cache-8za4vu_q/wheels/52/10/2e/99354ac41731548a5dce7838546d541efc472f74ba68e84339/tmp0lrjcejx/.tmp-xhqrz3jc/vllm.egg-info/SOURCES.txt'
+      creating '/tmp/pip-ephem-wheel-cache-8za4vu_q/wheels/52/10/2e/99354ac41731548a5dce7838546d541efc472f74ba68e84339/tmp0lrjcejx/.tmp-xhqrz3jc/vllm-0.18.1rc1.dev215+gb2bc736b1.cu131.dist-info'
+      creating /tmp/pip-ephem-wheel-cache-8za4vu_q/wheels/52/10/2e/99354ac41731548a5dce7838546d541efc472f74ba68e84339/tmp0lrjcejx/.tmp-xhqrz3jc/vllm-0.18.1rc1.dev215+gb2bc736b1.cu131.dist-info/WHEEL
+      running build_py
+      running build_ext
+      -- The CXX compiler identification is GNU 14.2.0
+      -- Detecting CXX compiler ABI info
+      -- Detecting CXX compiler ABI info - done
+      -- Check for working CXX compiler: /usr/bin/c++ - skipped
+      -- Detecting CXX compile features
+      -- Detecting CXX compile features - done
+      -- Build type: RelWithDebInfo
+      -- Target device: cuda
+      -- Found Python: /opt/benchllm/runtime/.venvs/vllm/bin/python (found version "3.13.5") found components: Interpreter Development.Module Development.SABIModule
+      -- Found python matching: /opt/benchllm/runtime/.venvs/vllm/bin/python.
+      -- Found CUDA: /usr/local/cuda (found version "13.1")
+      -- The CUDA compiler identification is NVIDIA 13.1.115 with host compiler GNU 14.2.0
+      -- Detecting CUDA compiler ABI info
+      -- Detecting CUDA compiler ABI info - done
+      -- Check for working CUDA compiler: /usr/local/cuda/bin/nvcc - skipped
+      -- Detecting CUDA compile features
+      -- Detecting CUDA compile features - done
+      -- Found CUDAToolkit: /usr/local/cuda/include (found version "13.1.115")
+      -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+      -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+      -- Found Threads: TRUE
+      -- PyTorch: CUDA detected: 13.1
+      -- PyTorch: CUDA nvcc is: /usr/local/cuda/bin/nvcc
+      -- PyTorch: CUDA toolkit directory: /usr/local/cuda
+      -- PyTorch: Header version is: 13.1
+      -- Found Python: /opt/benchllm/runtime/.venvs/vllm/bin/python (found version "3.13.5") found components: Interpreter
+      CMake Warning at /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/share/cmake/Caffe2/public/cuda.cmake:149 (message):
+        Failed to compute shorthash for libnvrtc.so
+      Call Stack (most recent call first):
+        /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/share/cmake/Caffe2/Caffe2Config.cmake:86 (include)
+        /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/share/cmake/Torch/TorchConfig.cmake:68 (find_package)
+        CMakeLists.txt:91 (find_package)
+      
+      
+      -- USE_CUDNN is set to 0. Compiling without cuDNN support
+      -- USE_CUSPARSELT is set to 0. Compiling without cuSPARSELt support
+      -- USE_CUDSS is set to 0. Compiling without cuDSS support
+      -- USE_CUFILE is set to 0. Compiling without cuFile support
+      -- Autodetected CUDA architecture(s):  8.6 8.6
+      CMake Warning at /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/share/cmake/Caffe2/public/cuda.cmake:332 (message):
+        pytorch is not compatible with `CMAKE_CUDA_ARCHITECTURES` and will ignore
+        its value.  Please configure `TORCH_CUDA_ARCH_LIST` instead.
+      Call Stack (most recent call first):
+        /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/share/cmake/Caffe2/Caffe2Config.cmake:86 (include)
+        /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/share/cmake/Torch/TorchConfig.cmake:68 (find_package)
+        CMakeLists.txt:91 (find_package)
+      
+      
+      -- Added CUDA NVCC flags for: -gencode;arch=compute_86,code=sm_86
+      CMake Warning at /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/share/cmake/Torch/TorchConfig.cmake:22 (message):
+        static library kineto_LIBRARY-NOTFOUND not found.
+      Call Stack (most recent call first):
+        /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/share/cmake/Torch/TorchConfig.cmake:125 (append_torchlib_if_found)
+        CMakeLists.txt:91 (find_package)
+      
+      
+      -- Found Torch: /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/lib/libtorch.so
+      -- CUDA target architectures: 8.6
+      -- CUDA supported target architectures: 8.6
+      -- FetchContent base directory: /opt/benchllm/runtime/src/vllm/.deps
+      -- Enabling cumem allocator extension.
+      -- CMake Version: 4.3.0
+      -- CUTLASS 4.2.1
+      -- Found CUDAToolkit: /usr/local/cuda/targets/x86_64-linux/include;/usr/local/cuda/targets/x86_64-linux/include/cccl (found version "13.1.115")
+      -- CUDART: /usr/local/cuda/lib64/libcudart.so
+      -- CUDA Driver: /usr/local/cuda/lib64/stubs/libcuda.so
+      -- NVRTC: /usr/local/cuda/lib64/libnvrtc.so
+      -- Default Install Location: install
+      -- Found Python3: /usr/bin/python3.13 (found suitable version "3.13.5", minimum required is "3.5") found components: Interpreter
+      -- CUDA Compilation Architectures: 70;72;75;80;86;87;89;90;90a;100;100a;120;120a;121;121a;110;110a;100f;120f;121f;103a;103f;110f;110;110a
+      -- Enable caching of reference results in conv unit tests
+      -- Enable rigorous conv problem sizes in conv unit tests
+      -- Grid Dependency Control (GDC) is enabled for SM100 kernels (required for programmatic dependent launches).
+      -- Using the following NVCC flags:
+        --expt-relaxed-constexpr
+        -ftemplate-backtrace-limit=0
+        -DCUTLASS_TEST_LEVEL=0
+        -DCUTLASS_TEST_ENABLE_CACHED_RESULTS=1
+        -DCUTLASS_CONV_UNIT_TEST_RIGOROUS_SIZE_ENABLED=1
+        -DCUTLASS_DEBUG_TRACE_LEVEL=0
+        -DCUTLASS_SM100_FAMILY_ARCHS_ENABLED
+        -DCUTLASS_SM100_FAMILY_ARCHS_ENABLED
+        -Xcompiler=-Wconversion
+        -Xcompiler=-fno-strict-aliasing
+        -lineinfo
+      -- Configuring cublas ...
+      -- cuBLAS Disabled.
+      -- Configuring cuBLAS ... done.
+      -- Marlin generation script hash: ac93a0e34f641c0cc59cb752f5d8a694(ARCH:8.6)
+      -- Last run Marlin generate script hash:
+      -- Marlin generation completed successfully.
+      -- Building Marlin kernels for archs: 8.0+PTX
+      -- Building AllSpark kernels for archs: 8.6
+      -- Not building scaled_mm_c3x_sm90 as no compatible archs found in CUDA target architectures
+      -- Not building scaled_mm_c3x_120 as no compatible archs found in CUDA target architectures
+      -- Not building scaled_mm_c3x_100 as no compatible archs found in CUDA target architectures
+      -- Building scaled_mm_c2x for archs: 8.0
+      -- Not building NVFP4 as no compatible archs were found.
+      -- Not building NVFP4 as no compatible archs were found.
+      -- Not building CUTLASS MLA as no compatible archs were found.
+      -- Not building grouped_mm_c3x as no compatible archs found in CUDA target architectures.
+      -- Not building grouped_mm_c3x as no compatible archs found in CUDA target architectures.
+      -- Not building ES MXFP8 grouped kernels as no compatible archs found in CUDA target architectures.
+      -- Not building dsv3_fused_a_gemm as no compatible archs found in CUDA target architectures.
+      -- Not building moe_data as no compatible archs found in CUDA target architectures.
+      -- Not building Machete kernels as no compatible archs found in CUDA target architectures
+      -- Not building W4A8 kernels as no compatible archs found in CUDA target architectures
+      -- Building hadacore
+      -- Enabling C extension.
+      -- Enabling C_stable extension.
+      -- Marlin MOE generation script hash with arch: e35bb24e0848870e45db2dc5845ff642(ARCH:8.6)
+      -- Last run Marlin MOE generate script hash with arch:
+      -- Marlin MOE generation completed successfully.
+      -- Building Marlin MOE kernels for archs: 8.0+PTX
+      -- Not building DSV3 router GEMM kernel as no compatible archs found (requires SM90+ and CUDA >= 12.0)
+      -- Enabling moe extension.
+      -- [triton_kernels] Fetch from https://github.com/triton-lang/triton.git:v3.6.0
+      -- [triton_kernels] triton_kernels is available at /opt/benchllm/runtime/src/vllm/.deps/triton_kernels-src/python/triton_kernels/triton_kernels/
+      -- FlashMLA is available at /opt/benchllm/runtime/src/vllm/.deps/flashmla-src
+      -- FlashMLA will not compile: unsupported CUDA architecture 8.6
+      CMake Warning (dev) at /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/cmake/data/share/cmake-4.3/Modules/FetchContent.cmake:1966 (message):
+        Calling FetchContent_Populate(qutlass) is deprecated, call
+        FetchContent_MakeAvailable(qutlass) instead.  Policy CMP0169 can be set to
+        OLD to allow FetchContent_Populate(qutlass) to be called directly for now,
+        but the ability to call it with declared details will be removed completely
+        in a future version.
+      Call Stack (most recent call first):
+        cmake/external_projects/qutlass.cmake:27 (FetchContent_Populate)
+        CMakeLists.txt:1212 (include)
+      This warning is for project developers.  Use -Wno-dev to suppress it.
+      
+      -- [QUTLASS] QuTLASS is available at /opt/benchllm/runtime/src/vllm/.deps/qutlass-src
+      -- [QUTLASS] Skipping build: no supported arch (12.0f / 10.0f) found in CUDA_ARCHS='8.6'.
+      -- Build type: RelWithDebInfo
+      -- Target device: cuda
+      -- Found Python: /opt/benchllm/runtime/.venvs/vllm/bin/python (found version "3.13.5") found components: Interpreter Development.Module Development.SABIModule
+      CMake Warning at .deps/vllm-flash-attn-src/CMakeLists.txt:77 (message):
+        Pytorch version 2.4.0 expected for CUDA build, saw 2.10.0 instead.
+      
+      
+      -- CUDA target architectures: 8.6
+      -- CUDA supported target architectures: 8.6
+      -- FA2_ARCHS: 8.0+PTX
+      -- FA3_ARCHS:
+      -- vllm-flash-attn is available at /opt/benchllm/runtime/src/vllm/.deps/vllm-flash-attn-src
+      -- Configuring done (151.2s)
+      -- Generating done (0.2s)
+      -- Build files have been written to: /tmp/tmphnv5bfw3.build-temp
+      [1/335] Building CXX object CMakeFiles/_C.dir/csrc/cutlass_extensions/common.cpp.o
+      [2/335] Building CXX object CMakeFiles/cumem_allocator.dir/csrc/cumem_allocator.cpp.o
+      [3/335] Building CUDA object CMakeFiles/_C.dir/csrc/cuda_utils_kernels.cu.o
+      [4/335] Building CUDA object CMakeFiles/_C.dir/csrc/attention/vertical_slash_index.cu.o
+      FAILED: [code=137] CMakeFiles/_C.dir/csrc/attention/vertical_slash_index.cu.o
+      /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ENABLE_DIRECT_CUDA_DRIVER_CALL=1 -DPy_LIMITED_API=3 -DTORCH_EXTENSION_NAME=_C -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_NVSHMEM -DUSE_RPC -DUSE_TENSORPIPE -D_C_EXPORTS -I/opt/benchllm/runtime/src/vllm/csrc -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/include -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/tools/util/include -isystem /usr/include/python3.13 -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include -DONNX_NAMESPACE=onnx_c2 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -O2 -g -DNDEBUG -std=c++17 -Xcompiler=-fPIC --expt-relaxed-constexpr -DENABLE_FP8 --threads=1 --compress-mode=size -DENABLE_SCALED_MM_C2X=1 -gencode arch=compute_86,code=sm_86 -MD -MT CMakeFiles/_C.dir/csrc/attention/vertical_slash_index.cu.o -MF CMakeFiles/_C.dir/csrc/attention/vertical_slash_index.cu.o.d -x cu -c /opt/benchllm/runtime/src/vllm/csrc/attention/vertical_slash_index.cu -o CMakeFiles/_C.dir/csrc/attention/vertical_slash_index.cu.o
+      Killed
+      [5/335] Building CUDA object CMakeFiles/_C.dir/csrc/attention/merge_attn_states.cu.o
+      FAILED: [code=137] CMakeFiles/_C.dir/csrc/attention/merge_attn_states.cu.o
+      /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ENABLE_DIRECT_CUDA_DRIVER_CALL=1 -DPy_LIMITED_API=3 -DTORCH_EXTENSION_NAME=_C -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_NVSHMEM -DUSE_RPC -DUSE_TENSORPIPE -D_C_EXPORTS -I/opt/benchllm/runtime/src/vllm/csrc -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/include -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/tools/util/include -isystem /usr/include/python3.13 -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include -DONNX_NAMESPACE=onnx_c2 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -O2 -g -DNDEBUG -std=c++17 -Xcompiler=-fPIC --expt-relaxed-constexpr -DENABLE_FP8 --threads=1 --compress-mode=size -DENABLE_SCALED_MM_C2X=1 -gencode arch=compute_86,code=sm_86 -MD -MT CMakeFiles/_C.dir/csrc/attention/merge_attn_states.cu.o -MF CMakeFiles/_C.dir/csrc/attention/merge_attn_states.cu.o.d -x cu -c /opt/benchllm/runtime/src/vllm/csrc/attention/merge_attn_states.cu -o CMakeFiles/_C.dir/csrc/attention/merge_attn_states.cu.o
+      Killed
+      [6/335] Building CUDA object CMakeFiles/_C.dir/csrc/fused_qknorm_rope_kernel.cu.o
+      FAILED: [code=137] CMakeFiles/_C.dir/csrc/fused_qknorm_rope_kernel.cu.o
+      /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ENABLE_DIRECT_CUDA_DRIVER_CALL=1 -DPy_LIMITED_API=3 -DTORCH_EXTENSION_NAME=_C -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_NVSHMEM -DUSE_RPC -DUSE_TENSORPIPE -D_C_EXPORTS -I/opt/benchllm/runtime/src/vllm/csrc -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/include -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/tools/util/include -isystem /usr/include/python3.13 -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include -DONNX_NAMESPACE=onnx_c2 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -O2 -g -DNDEBUG -std=c++17 -Xcompiler=-fPIC --expt-relaxed-constexpr -DENABLE_FP8 --threads=1 --compress-mode=size -DENABLE_SCALED_MM_C2X=1 -gencode arch=compute_86,code=sm_86 -MD -MT CMakeFiles/_C.dir/csrc/fused_qknorm_rope_kernel.cu.o -MF CMakeFiles/_C.dir/csrc/fused_qknorm_rope_kernel.cu.o.d -x cu -c /opt/benchllm/runtime/src/vllm/csrc/fused_qknorm_rope_kernel.cu -o CMakeFiles/_C.dir/csrc/fused_qknorm_rope_kernel.cu.o
+      Killed
+      [7/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_bfloat16_u4_bfloat16.cu.o
+      FAILED: [code=137] CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_bfloat16_u4_bfloat16.cu.o
+      /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ENABLE_DIRECT_CUDA_DRIVER_CALL=1 -DPy_LIMITED_API=3 -DTORCH_EXTENSION_NAME=_C -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_NVSHMEM -DUSE_RPC -DUSE_TENSORPIPE -D_C_EXPORTS -I/opt/benchllm/runtime/src/vllm/csrc -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/include -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/tools/util/include -isystem /usr/include/python3.13 -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include -DONNX_NAMESPACE=onnx_c2 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -O2 -g -DNDEBUG -std=c++17 -Xcompiler=-fPIC --expt-relaxed-constexpr -DENABLE_FP8 --threads=1 --compress-mode=size -DENABLE_SCALED_MM_C2X=1 -static-global-template-stub=false -gencode arch=compute_80,code=sm_80 -gencode arch=compute_80,code=compute_80 -MD -MT CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_bfloat16_u4_bfloat16.cu.o -MF CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_bfloat16_u4_bfloat16.cu.o.d -x cu -c /opt/benchllm/runtime/src/vllm/csrc/quantization/marlin/sm80_kernel_bfloat16_u4_bfloat16.cu -o CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_bfloat16_u4_bfloat16.cu.o
+      Killed
+      [8/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_s8_u4_float16.cu.o
+      FAILED: [code=137] CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_s8_u4_float16.cu.o
+      /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ENABLE_DIRECT_CUDA_DRIVER_CALL=1 -DPy_LIMITED_API=3 -DTORCH_EXTENSION_NAME=_C -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_NVSHMEM -DUSE_RPC -DUSE_TENSORPIPE -D_C_EXPORTS -I/opt/benchllm/runtime/src/vllm/csrc -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/include -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/tools/util/include -isystem /usr/include/python3.13 -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include -DONNX_NAMESPACE=onnx_c2 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -O2 -g -DNDEBUG -std=c++17 -Xcompiler=-fPIC --expt-relaxed-constexpr -DENABLE_FP8 --threads=1 --compress-mode=size -DENABLE_SCALED_MM_C2X=1 -static-global-template-stub=false -gencode arch=compute_80,code=sm_80 -gencode arch=compute_80,code=compute_80 -MD -MT CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_s8_u4_float16.cu.o -MF CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_s8_u4_float16.cu.o.d -x cu -c /opt/benchllm/runtime/src/vllm/csrc/quantization/marlin/sm80_kernel_s8_u4_float16.cu -o CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_s8_u4_float16.cu.o
+      Killed
+      [9/335] Building CUDA object CMakeFiles/_C.dir/csrc/mamba/mamba_ssm/selective_scan_fwd.cu.o
+      FAILED: [code=137] CMakeFiles/_C.dir/csrc/mamba/mamba_ssm/selective_scan_fwd.cu.o
+      /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ENABLE_DIRECT_CUDA_DRIVER_CALL=1 -DPy_LIMITED_API=3 -DTORCH_EXTENSION_NAME=_C -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_NVSHMEM -DUSE_RPC -DUSE_TENSORPIPE -D_C_EXPORTS -I/opt/benchllm/runtime/src/vllm/csrc -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/include -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/tools/util/include -isystem /usr/include/python3.13 -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include -DONNX_NAMESPACE=onnx_c2 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -O2 -g -DNDEBUG -std=c++17 -Xcompiler=-fPIC --expt-relaxed-constexpr -DENABLE_FP8 --threads=1 --compress-mode=size -DENABLE_SCALED_MM_C2X=1 -gencode arch=compute_86,code=sm_86 -MD -MT CMakeFiles/_C.dir/csrc/mamba/mamba_ssm/selective_scan_fwd.cu.o -MF CMakeFiles/_C.dir/csrc/mamba/mamba_ssm/selective_scan_fwd.cu.o.d -x cu -c /opt/benchllm/runtime/src/vllm/csrc/mamba/mamba_ssm/selective_scan_fwd.cu -o CMakeFiles/_C.dir/csrc/mamba/mamba_ssm/selective_scan_fwd.cu.o
+      Killed
+      [10/335] Building CUDA object CMakeFiles/_C.dir/csrc/layernorm_quant_kernels.cu.o
+      FAILED: [code=137] CMakeFiles/_C.dir/csrc/layernorm_quant_kernels.cu.o
+      /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ENABLE_DIRECT_CUDA_DRIVER_CALL=1 -DPy_LIMITED_API=3 -DTORCH_EXTENSION_NAME=_C -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_NVSHMEM -DUSE_RPC -DUSE_TENSORPIPE -D_C_EXPORTS -I/opt/benchllm/runtime/src/vllm/csrc -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/include -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/tools/util/include -isystem /usr/include/python3.13 -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include -DONNX_NAMESPACE=onnx_c2 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -O2 -g -DNDEBUG -std=c++17 -Xcompiler=-fPIC --expt-relaxed-constexpr -DENABLE_FP8 --threads=1 --compress-mode=size -DENABLE_SCALED_MM_C2X=1 -gencode arch=compute_86,code=sm_86 -MD -MT CMakeFiles/_C.dir/csrc/layernorm_quant_kernels.cu.o -MF CMakeFiles/_C.dir/csrc/layernorm_quant_kernels.cu.o.d -x cu -c /opt/benchllm/runtime/src/vllm/csrc/layernorm_quant_kernels.cu -o CMakeFiles/_C.dir/csrc/layernorm_quant_kernels.cu.o
+      Killed
+      [11/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/w8a8/int8/scaled_quant.cu.o
+      FAILED: [code=137] CMakeFiles/_C.dir/csrc/quantization/w8a8/int8/scaled_quant.cu.o
+      /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ENABLE_DIRECT_CUDA_DRIVER_CALL=1 -DPy_LIMITED_API=3 -DTORCH_EXTENSION_NAME=_C -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_NVSHMEM -DUSE_RPC -DUSE_TENSORPIPE -D_C_EXPORTS -I/opt/benchllm/runtime/src/vllm/csrc -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/include -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/tools/util/include -isystem /usr/include/python3.13 -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include -DONNX_NAMESPACE=onnx_c2 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -O2 -g -DNDEBUG -std=c++17 -Xcompiler=-fPIC --expt-relaxed-constexpr -DENABLE_FP8 --threads=1 --compress-mode=size -DENABLE_SCALED_MM_C2X=1 -gencode arch=compute_86,code=sm_86 -MD -MT CMakeFiles/_C.dir/csrc/quantization/w8a8/int8/scaled_quant.cu.o -MF CMakeFiles/_C.dir/csrc/quantization/w8a8/int8/scaled_quant.cu.o.d -x cu -c /opt/benchllm/runtime/src/vllm/csrc/quantization/w8a8/int8/scaled_quant.cu -o CMakeFiles/_C.dir/csrc/quantization/w8a8/int8/scaled_quant.cu.o
+      Killed
+      [12/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/fused_kernels/fused_layernorm_dynamic_per_token_quant.cu.o
+      FAILED: [code=137] CMakeFiles/_C.dir/csrc/quantization/fused_kernels/fused_layernorm_dynamic_per_token_quant.cu.o
+      /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ENABLE_DIRECT_CUDA_DRIVER_CALL=1 -DPy_LIMITED_API=3 -DTORCH_EXTENSION_NAME=_C -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_NVSHMEM -DUSE_RPC -DUSE_TENSORPIPE -D_C_EXPORTS -I/opt/benchllm/runtime/src/vllm/csrc -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/include -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/tools/util/include -isystem /usr/include/python3.13 -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include -DONNX_NAMESPACE=onnx_c2 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -O2 -g -DNDEBUG -std=c++17 -Xcompiler=-fPIC --expt-relaxed-constexpr -DENABLE_FP8 --threads=1 --compress-mode=size -DENABLE_SCALED_MM_C2X=1 -gencode arch=compute_86,code=sm_86 -MD -MT CMakeFiles/_C.dir/csrc/quantization/fused_kernels/fused_layernorm_dynamic_per_token_quant.cu.o -MF CMakeFiles/_C.dir/csrc/quantization/fused_kernels/fused_layernorm_dynamic_per_token_quant.cu.o.d -x cu -c /opt/benchllm/runtime/src/vllm/csrc/quantization/fused_kernels/fused_layernorm_dynamic_per_token_quant.cu -o CMakeFiles/_C.dir/csrc/quantization/fused_kernels/fused_layernorm_dynamic_per_token_quant.cu.o
+      Killed
+      [13/335] Building CXX object CMakeFiles/_C.dir/csrc/torch_bindings.cpp.o
+      [14/335] Building CUDA object CMakeFiles/_C.dir/csrc/attention/paged_attention_v1.cu.o
+      FAILED: [code=137] CMakeFiles/_C.dir/csrc/attention/paged_attention_v1.cu.o
+      /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ENABLE_DIRECT_CUDA_DRIVER_CALL=1 -DPy_LIMITED_API=3 -DTORCH_EXTENSION_NAME=_C -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_NVSHMEM -DUSE_RPC -DUSE_TENSORPIPE -D_C_EXPORTS -I/opt/benchllm/runtime/src/vllm/csrc -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/include -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/tools/util/include -isystem /usr/include/python3.13 -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include -DONNX_NAMESPACE=onnx_c2 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -O2 -g -DNDEBUG -std=c++17 -Xcompiler=-fPIC --expt-relaxed-constexpr -DENABLE_FP8 --threads=1 --compress-mode=size -DENABLE_SCALED_MM_C2X=1 -gencode arch=compute_86,code=sm_86 -MD -MT CMakeFiles/_C.dir/csrc/attention/paged_attention_v1.cu.o -MF CMakeFiles/_C.dir/csrc/attention/paged_attention_v1.cu.o.d -x cu -c /opt/benchllm/runtime/src/vllm/csrc/attention/paged_attention_v1.cu -o CMakeFiles/_C.dir/csrc/attention/paged_attention_v1.cu.o
+      Killed
+      [15/335] Building CUDA object CMakeFiles/_C.dir/csrc/attention/paged_attention_v2.cu.o
+      FAILED: [code=137] CMakeFiles/_C.dir/csrc/attention/paged_attention_v2.cu.o
+      /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ENABLE_DIRECT_CUDA_DRIVER_CALL=1 -DPy_LIMITED_API=3 -DTORCH_EXTENSION_NAME=_C -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_NVSHMEM -DUSE_RPC -DUSE_TENSORPIPE -D_C_EXPORTS -I/opt/benchllm/runtime/src/vllm/csrc -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/include -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/tools/util/include -isystem /usr/include/python3.13 -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include -DONNX_NAMESPACE=onnx_c2 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -O2 -g -DNDEBUG -std=c++17 -Xcompiler=-fPIC --expt-relaxed-constexpr -DENABLE_FP8 --threads=1 --compress-mode=size -DENABLE_SCALED_MM_C2X=1 -gencode arch=compute_86,code=sm_86 -MD -MT CMakeFiles/_C.dir/csrc/attention/paged_attention_v2.cu.o -MF CMakeFiles/_C.dir/csrc/attention/paged_attention_v2.cu.o.d -x cu -c /opt/benchllm/runtime/src/vllm/csrc/attention/paged_attention_v2.cu -o CMakeFiles/_C.dir/csrc/attention/paged_attention_v2.cu.o
+      Killed
+      [16/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/fp4/nvfp4_scaled_mm_entry.cu.o
+      FAILED: [code=137] CMakeFiles/_C.dir/csrc/quantization/fp4/nvfp4_scaled_mm_entry.cu.o
+      /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ENABLE_DIRECT_CUDA_DRIVER_CALL=1 -DPy_LIMITED_API=3 -DTORCH_EXTENSION_NAME=_C -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_NVSHMEM -DUSE_RPC -DUSE_TENSORPIPE -D_C_EXPORTS -I/opt/benchllm/runtime/src/vllm/csrc -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/include -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/tools/util/include -isystem /usr/include/python3.13 -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include -DONNX_NAMESPACE=onnx_c2 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -O2 -g -DNDEBUG -std=c++17 -Xcompiler=-fPIC --expt-relaxed-constexpr -DENABLE_FP8 --threads=1 --compress-mode=size -DENABLE_SCALED_MM_C2X=1 -gencode arch=compute_86,code=sm_86 -MD -MT CMakeFiles/_C.dir/csrc/quantization/fp4/nvfp4_scaled_mm_entry.cu.o -MF CMakeFiles/_C.dir/csrc/quantization/fp4/nvfp4_scaled_mm_entry.cu.o.d -x cu -c /opt/benchllm/runtime/src/vllm/csrc/quantization/fp4/nvfp4_scaled_mm_entry.cu -o CMakeFiles/_C.dir/csrc/quantization/fp4/nvfp4_scaled_mm_entry.cu.o
+      Killed
+      [17/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_bfloat16_fe2m1f_bfloat16.cu.o
+      FAILED: [code=137] CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_bfloat16_fe2m1f_bfloat16.cu.o
+      /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ENABLE_DIRECT_CUDA_DRIVER_CALL=1 -DPy_LIMITED_API=3 -DTORCH_EXTENSION_NAME=_C -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_NVSHMEM -DUSE_RPC -DUSE_TENSORPIPE -D_C_EXPORTS -I/opt/benchllm/runtime/src/vllm/csrc -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/include -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/tools/util/include -isystem /usr/include/python3.13 -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include -DONNX_NAMESPACE=onnx_c2 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -O2 -g -DNDEBUG -std=c++17 -Xcompiler=-fPIC --expt-relaxed-constexpr -DENABLE_FP8 --threads=1 --compress-mode=size -DENABLE_SCALED_MM_C2X=1 -static-global-template-stub=false -gencode arch=compute_80,code=sm_80 -gencode arch=compute_80,code=compute_80 -MD -MT CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_bfloat16_fe2m1f_bfloat16.cu.o -MF CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_bfloat16_fe2m1f_bfloat16.cu.o.d -x cu -c /opt/benchllm/runtime/src/vllm/csrc/quantization/marlin/sm80_kernel_bfloat16_fe2m1f_bfloat16.cu -o CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_bfloat16_fe2m1f_bfloat16.cu.o
+      Killed
+      [18/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_s8_u4b8_float16.cu.o
+      FAILED: [code=137] CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_s8_u4b8_float16.cu.o
+      /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ENABLE_DIRECT_CUDA_DRIVER_CALL=1 -DPy_LIMITED_API=3 -DTORCH_EXTENSION_NAME=_C -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_NVSHMEM -DUSE_RPC -DUSE_TENSORPIPE -D_C_EXPORTS -I/opt/benchllm/runtime/src/vllm/csrc -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/include -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/tools/util/include -isystem /usr/include/python3.13 -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include -DONNX_NAMESPACE=onnx_c2 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -O2 -g -DNDEBUG -std=c++17 -Xcompiler=-fPIC --expt-relaxed-constexpr -DENABLE_FP8 --threads=1 --compress-mode=size -DENABLE_SCALED_MM_C2X=1 -static-global-template-stub=false -gencode arch=compute_80,code=sm_80 -gencode arch=compute_80,code=compute_80 -MD -MT CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_s8_u4b8_float16.cu.o -MF CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_s8_u4b8_float16.cu.o.d -x cu -c /opt/benchllm/runtime/src/vllm/csrc/quantization/marlin/sm80_kernel_s8_u4b8_float16.cu -o CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_s8_u4b8_float16.cu.o
+      Killed
+      [19/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_float16_fe4m3fn_float16.cu.o
+      FAILED: [code=137] CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_float16_fe4m3fn_float16.cu.o
+      /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ENABLE_DIRECT_CUDA_DRIVER_CALL=1 -DPy_LIMITED_API=3 -DTORCH_EXTENSION_NAME=_C -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_NVSHMEM -DUSE_RPC -DUSE_TENSORPIPE -D_C_EXPORTS -I/opt/benchllm/runtime/src/vllm/csrc -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/include -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/tools/util/include -isystem /usr/include/python3.13 -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include -DONNX_NAMESPACE=onnx_c2 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -O2 -g -DNDEBUG -std=c++17 -Xcompiler=-fPIC --expt-relaxed-constexpr -DENABLE_FP8 --threads=1 --compress-mode=size -DENABLE_SCALED_MM_C2X=1 -static-global-template-stub=false -gencode arch=compute_80,code=sm_80 -gencode arch=compute_80,code=compute_80 -MD -MT CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_float16_fe4m3fn_float16.cu.o -MF CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_float16_fe4m3fn_float16.cu.o.d -x cu -c /opt/benchllm/runtime/src/vllm/csrc/quantization/marlin/sm80_kernel_float16_fe4m3fn_float16.cu -o CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_float16_fe4m3fn_float16.cu.o
+      Killed
+      [20/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_float16_u4_float16.cu.o
+      FAILED: [code=137] CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_float16_u4_float16.cu.o
+      /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ENABLE_DIRECT_CUDA_DRIVER_CALL=1 -DPy_LIMITED_API=3 -DTORCH_EXTENSION_NAME=_C -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_NVSHMEM -DUSE_RPC -DUSE_TENSORPIPE -D_C_EXPORTS -I/opt/benchllm/runtime/src/vllm/csrc -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/include -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/tools/util/include -isystem /usr/include/python3.13 -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include -DONNX_NAMESPACE=onnx_c2 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -O2 -g -DNDEBUG -std=c++17 -Xcompiler=-fPIC --expt-relaxed-constexpr -DENABLE_FP8 --threads=1 --compress-mode=size -DENABLE_SCALED_MM_C2X=1 -static-global-template-stub=false -gencode arch=compute_80,code=sm_80 -gencode arch=compute_80,code=compute_80 -MD -MT CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_float16_u4_float16.cu.o -MF CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_float16_u4_float16.cu.o.d -x cu -c /opt/benchllm/runtime/src/vllm/csrc/quantization/marlin/sm80_kernel_float16_u4_float16.cu -o CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_float16_u4_float16.cu.o
+      Killed
+      [21/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_bfloat16_u4b8_bfloat16.cu.o
+      FAILED: [code=137] CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_bfloat16_u4b8_bfloat16.cu.o
+      /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ENABLE_DIRECT_CUDA_DRIVER_CALL=1 -DPy_LIMITED_API=3 -DTORCH_EXTENSION_NAME=_C -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_NVSHMEM -DUSE_RPC -DUSE_TENSORPIPE -D_C_EXPORTS -I/opt/benchllm/runtime/src/vllm/csrc -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/include -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/tools/util/include -isystem /usr/include/python3.13 -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include -DONNX_NAMESPACE=onnx_c2 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -O2 -g -DNDEBUG -std=c++17 -Xcompiler=-fPIC --expt-relaxed-constexpr -DENABLE_FP8 --threads=1 --compress-mode=size -DENABLE_SCALED_MM_C2X=1 -static-global-template-stub=false -gencode arch=compute_80,code=sm_80 -gencode arch=compute_80,code=compute_80 -MD -MT CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_bfloat16_u4b8_bfloat16.cu.o -MF CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_bfloat16_u4b8_bfloat16.cu.o.d -x cu -c /opt/benchllm/runtime/src/vllm/csrc/quantization/marlin/sm80_kernel_bfloat16_u4b8_bfloat16.cu -o CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_bfloat16_u4b8_bfloat16.cu.o
+      Killed
+      [22/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/w8a8/fp8/common.cu.o
+      FAILED: [code=137] CMakeFiles/_C.dir/csrc/quantization/w8a8/fp8/common.cu.o
+      /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ENABLE_DIRECT_CUDA_DRIVER_CALL=1 -DPy_LIMITED_API=3 -DTORCH_EXTENSION_NAME=_C -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_NVSHMEM -DUSE_RPC -DUSE_TENSORPIPE -D_C_EXPORTS -I/opt/benchllm/runtime/src/vllm/csrc -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/include -I/opt/benchllm/runtime/src/vllm/.deps/cutlass-src/tools/util/include -isystem /usr/include/python3.13 -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include -isystem /tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /usr/local/cuda/include -DONNX_NAMESPACE=onnx_c2 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -O2 -g -DNDEBUG -std=c++17 -Xcompiler=-fPIC --expt-relaxed-constexpr -DENABLE_FP8 --threads=1 --compress-mode=size -DENABLE_SCALED_MM_C2X=1 -gencode arch=compute_86,code=sm_86 -MD -MT CMakeFiles/_C.dir/csrc/quantization/w8a8/fp8/common.cu.o -MF CMakeFiles/_C.dir/csrc/quantization/w8a8/fp8/common.cu.o.d -x cu -c /opt/benchllm/runtime/src/vllm/csrc/quantization/w8a8/fp8/common.cu -o CMakeFiles/_C.dir/csrc/quantization/w8a8/fp8/common.cu.o
+      Killed
+      [23/335] Building CUDA object CMakeFiles/_C.dir/csrc/pos_encoding_kernels.cu.o
+      [24/335] Building CUDA object CMakeFiles/_C.dir/csrc/cuda_view.cu.o
+      [25/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/activation_kernels.cu.o
+      [26/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/gptq_allspark/allspark_repack.cu.o
+      [27/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/marlin/gptq_marlin_repack.cu.o
+      [28/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/marlin/marlin_int4_fp8_preprocess.cu.o
+      [29/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/fp4/nvfp4_quant_entry.cu.o
+      [30/335] Building CUDA object CMakeFiles/_C.dir/csrc/topk.cu.o
+      [31/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/w8a8/cutlass/scaled_mm_entry.cu.o
+      [32/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/marlin/awq_marlin_repack.cu.o
+      [33/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/awq/gemm_kernels.cu.o
+      [34/335] Building CUDA object CMakeFiles/_C.dir/csrc/activation_kernels.cu.o
+      [35/335] Building CUDA object CMakeFiles/_C.dir/csrc/custom_all_reduce.cu.o
+      [36/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/marlin/marlin.cu.o
+      [37/335] Building CUDA object CMakeFiles/_C.dir/csrc/cache_kernels_fused.cu.o
+      [38/335] Building CUDA object CMakeFiles/_C.dir/csrc/sampler.cu.o
+      [39/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/gptq_allspark/allspark_qgemm_w8a16.cu.o
+      [40/335] Building CUDA object CMakeFiles/_C.dir/csrc/layernorm_kernels.cu.o
+      [41/335] Building CUDA object CMakeFiles/_C.dir/csrc/cache_kernels.cu.o
+      [42/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_float16_fe2m1f_float16.cu.o
+      [43/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/gptq/q_gemm.cu.o
+      [44/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_bfloat16_fe4m3fn_bfloat16.cu.o
+      [45/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/gguf/gguf_kernel.cu.o
+      [46/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_s8_u4_bfloat16.cu.o
+      [47/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_s8_u4b8_bfloat16.cu.o
+      [48/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_float16_u4b8_float16.cu.o
+      [49/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_float16_u8b128_float16.cu.o
+      [50/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/marlin/sm80_kernel_bfloat16_u8b128_bfloat16.cu.o
+      [51/335] Building CUDA object CMakeFiles/_C.dir/csrc/quantization/w8a8/cutlass/scaled_mm_c2x.cu.o
+      ninja: build stopped: subcommand failed.
+      Traceback (most recent call last):
+        File "/opt/benchllm/runtime/.venvs/vllm/lib/python3.13/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 389, in <module>
+          main()
+          ~~~~^^
+        File "/opt/benchllm/runtime/.venvs/vllm/lib/python3.13/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 373, in main
+          json_out["return_val"] = hook(**hook_input["kwargs"])
+                                   ~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+        File "/opt/benchllm/runtime/.venvs/vllm/lib/python3.13/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 303, in build_editable
+          return hook(wheel_directory, config_settings, metadata_directory)
+        File "/tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools/build_meta.py", line 472, in build_editable
+          return self._build_with_temp_dir(
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~^
+              cmd, ".whl", wheel_directory, config_settings
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+          )
+          ^
+        File "/tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools/build_meta.py", line 408, in _build_with_temp_dir
+          self.run_setup()
+          ~~~~~~~~~~~~~~^^
+        File "/tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools/build_meta.py", line 317, in run_setup
+          exec(code, locals())
+          ~~~~^^^^^^^^^^^^^^^^
+        File "<string>", line 1041, in <module>
+        File "/tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools/__init__.py", line 117, in setup
+          return distutils.core.setup(**attrs)  # type: ignore[return-value]
+                 ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+        File "/tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools/_distutils/core.py", line 186, in setup
+          return run_commands(dist)
+        File "/tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools/_distutils/core.py", line 202, in run_commands
+          dist.run_commands()
+          ~~~~~~~~~~~~~~~~~^^
+        File "/tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools/_distutils/dist.py", line 1002, in run_commands
+          self.run_command(cmd)
+          ~~~~~~~~~~~~~~~~^^^^^
+        File "/tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools/dist.py", line 1107, in run_command
+          super().run_command(command)
+          ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+        File "/tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools/_distutils/dist.py", line 1021, in run_command
+          cmd_obj.run()
+          ~~~~~~~~~~~^^
+        File "/tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools/command/editable_wheel.py", line 140, in run
+          self._create_wheel_file(bdist_wheel)
+          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+        File "/tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools/command/editable_wheel.py", line 350, in _create_wheel_file
+          files, mapping = self._run_build_commands(dist_name, unpacked, lib, tmp)
+                           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File "/tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools/command/editable_wheel.py", line 273, in _run_build_commands
+          self._run_build_subcommands()
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+        File "/tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools/command/editable_wheel.py", line 300, in _run_build_subcommands
+          self.run_command(name)
+          ~~~~~~~~~~~~~~~~^^^^^^
+        File "/tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools/_distutils/cmd.py", line 357, in run_command
+          self.distribution.run_command(command)
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+        File "/tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools/dist.py", line 1107, in run_command
+          super().run_command(command)
+          ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+        File "/tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools/_distutils/dist.py", line 1021, in run_command
+          cmd_obj.run()
+          ~~~~~~~~~~~^^
+        File "<string>", line 346, in run
+        File "/tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools/command/build_ext.py", line 97, in run
+          _build_ext.run(self)
+          ~~~~~~~~~~~~~~^^^^^^
+        File "/tmp/pip-build-env-absmw6ku/overlay/lib/python3.13/site-packages/setuptools/_distutils/command/build_ext.py", line 368, in run
+          self.build_extensions()
+          ~~~~~~~~~~~~~~~~~~~~~^^
+        File "<string>", line 315, in build_extensions
+        File "/usr/lib/python3.13/subprocess.py", line 419, in check_call
+          raise CalledProcessError(retcode, cmd)
+      subprocess.CalledProcessError: Command '['cmake', '--build', '.', '-j=48', '--target=_moe_C', '--target=cumem_allocator', '--target=triton_kernels', '--target=_vllm_fa2_C', '--target=_vllm_fa3_C', '--target=_vllm_fa4_cutedsl_C', '--target=_flashmla_C', '--target=_flashmla_extension_C', '--target=_C', '--target=_C_stable_libtorch']' returned non-zero exit status 137.
+      An error occurred when building editable wheel for vllm.
+      See debugging tips in: https://setuptools.pypa.io/en/latest/userguide/development_mode.html#debugging-tips
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+  ERROR: Failed building editable for vllm
+Failed to build vllm
+error: failed-wheel-build-for-install
+
+× Failed to build installable wheels for some pyproject.toml based projects
+╰─> vllm
+

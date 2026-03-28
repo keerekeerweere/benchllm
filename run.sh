@@ -4,6 +4,10 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 STACK_ROOT="$ROOT_DIR/runtime/dual-3090"
 PYTHON_TOOL="uv"
+PYTHON_VERSION="${BENCHLLM_PYTHON_VERSION:-3.12}"
+SYSTEM_PYTHON_BIN="${BENCHLLM_SYSTEM_PYTHON_BIN:-python3}"
+VLLM_INSTALL_MODE="${BENCHLLM_VLLM_INSTALL_MODE:-wheel}"
+VLLM_PACKAGE_SPEC="${BENCHLLM_VLLM_PACKAGE_SPEC:-vllm}"
 CATALOG_PATH="$ROOT_DIR/catalogs/dual-3090-openai.yaml"
 DRY_RUN=0
 BENCHLLM_REPO="${BENCHLLM_REPO:-$ROOT_DIR}"
@@ -72,9 +76,9 @@ create_venv_if_missing() {
     return
   fi
   if [[ "$tool" == "uv" ]]; then
-    run_cmd uv venv "$dest"
+    run_cmd uv venv --python "$PYTHON_VERSION" "$dest"
   else
-    run_cmd python3 -m venv "$dest"
+    run_cmd "$SYSTEM_PYTHON_BIN" -m venv "$dest"
   fi
 }
 
@@ -112,6 +116,10 @@ if [[ "$PYTHON_TOOL" != "uv" && "$PYTHON_TOOL" != "venv" ]]; then
   printf 'Unsupported --python-tool: %s\n' "$PYTHON_TOOL" >&2
   exit 1
 fi
+if [[ "$VLLM_INSTALL_MODE" != "wheel" && "$VLLM_INSTALL_MODE" != "source" ]]; then
+  printf 'Unsupported BENCHLLM_VLLM_INSTALL_MODE: %s\n' "$VLLM_INSTALL_MODE" >&2
+  exit 1
+fi
 
 resolve_python_tool
 load_env_file "$ROOT_DIR/.env"
@@ -131,14 +139,21 @@ if [[ ! -f "$STACK_ROOT/.env" ]]; then
 fi
 
 clone_if_missing "$BENCHLLM_REPO" "$STACK_ROOT/src/benchllm"
-clone_if_missing "$VLLM_REPO" "$STACK_ROOT/src/vllm"
+if [[ "$VLLM_INSTALL_MODE" == "source" ]]; then
+  clone_if_missing "$VLLM_REPO" "$STACK_ROOT/src/vllm"
+fi
 clone_if_missing "$LLAMACPP_REPO" "$STACK_ROOT/src/llama.cpp"
 
 if [[ "$PYTHON_TOOL" == "uv" ]]; then
+  run_cmd uv python install "$PYTHON_VERSION"
   create_venv_if_missing uv "$STACK_ROOT/.venvs/benchllm"
   create_venv_if_missing uv "$STACK_ROOT/.venvs/vllm"
   run_cmd uv pip install --python "$STACK_ROOT/.venvs/benchllm/bin/python" -e "$STACK_ROOT/src/benchllm"
-  run_cmd uv pip install --python "$STACK_ROOT/.venvs/vllm/bin/python" -e "$STACK_ROOT/src/vllm"
+  if [[ "$VLLM_INSTALL_MODE" == "wheel" ]]; then
+    run_cmd uv pip install --python "$STACK_ROOT/.venvs/vllm/bin/python" "$VLLM_PACKAGE_SPEC"
+  else
+    run_cmd uv pip install --python "$STACK_ROOT/.venvs/vllm/bin/python" -e "$STACK_ROOT/src/vllm"
+  fi
   PREPARE_PYTHON="$STACK_ROOT/.venvs/benchllm/bin/python"
 else
   create_venv_if_missing venv "$STACK_ROOT/.venvs/benchllm"
@@ -146,7 +161,11 @@ else
   run_cmd "$STACK_ROOT/.venvs/benchllm/bin/python" -m pip install --upgrade pip
   run_cmd "$STACK_ROOT/.venvs/vllm/bin/python" -m pip install --upgrade pip
   run_cmd "$STACK_ROOT/.venvs/benchllm/bin/python" -m pip install -e "$STACK_ROOT/src/benchllm"
-  run_cmd "$STACK_ROOT/.venvs/vllm/bin/python" -m pip install -e "$STACK_ROOT/src/vllm"
+  if [[ "$VLLM_INSTALL_MODE" == "wheel" ]]; then
+    run_cmd "$STACK_ROOT/.venvs/vllm/bin/python" -m pip install "$VLLM_PACKAGE_SPEC"
+  else
+    run_cmd "$STACK_ROOT/.venvs/vllm/bin/python" -m pip install -e "$STACK_ROOT/src/vllm"
+  fi
   PREPARE_PYTHON="$STACK_ROOT/.venvs/benchllm/bin/python"
 fi
 
