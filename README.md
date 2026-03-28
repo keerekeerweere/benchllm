@@ -35,7 +35,7 @@ For a no-argument installer suitable for `curl | bash`, use:
 curl -fsSL https://raw.githubusercontent.com/keerekeerweere/benchllm/main/install.sh | sudo bash
 ```
 
-It defaults to `/opt/benchllm` under `sudo`, clones this repo, creates `/opt/benchllm/.env`, and then runs the normal bootstrap flow.
+It defaults to `/opt/benchllm` under `sudo`, clones this repo, creates `/opt/benchllm/.env`, installs missing `apt` packages when needed on Debian-like systems, and automatically falls back from `uv` to `venv` if `uv` is not installed.
 
 ## Notes
 

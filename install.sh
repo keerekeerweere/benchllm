@@ -26,6 +26,68 @@ run_cmd() {
   fi
 }
 
+add_local_bin_to_path() {
+  local home_dir="${HOME:-/root}"
+  case ":$PATH:" in
+    *":$home_dir/.local/bin:"*) ;;
+    *) export PATH="$home_dir/.local/bin:$PATH" ;;
+  esac
+}
+
+ensure_system_deps() {
+  local missing=0
+  for cmd in git cmake python3; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+      missing=1
+    fi
+  done
+  if [[ "$missing" -eq 0 ]]; then
+    return
+  fi
+  if [[ "${EUID:-$(id -u)}" -ne 0 ]] || ! command -v apt-get >/dev/null 2>&1; then
+    log "! missing required system packages (git/cmake/python3) and cannot install automatically"
+    exit 1
+  fi
+  run_cmd apt-get update
+  run_cmd apt-get install -y ca-certificates curl git cmake build-essential python3 python3-venv
+}
+
+install_uv_with_pipx_if_possible() {
+  add_local_bin_to_path
+  if command -v uv >/dev/null 2>&1; then
+    return 0
+  fi
+  if command -v pipx >/dev/null 2>&1; then
+    run_cmd pipx install uv
+    add_local_bin_to_path
+    if [[ "$DRY_RUN" -eq 1 ]] || command -v uv >/dev/null 2>&1; then
+      return 0
+    fi
+  fi
+  if [[ "${EUID:-$(id -u)}" -eq 0 ]] && command -v apt-get >/dev/null 2>&1; then
+    run_cmd apt-get update
+    run_cmd apt-get install -y pipx python3-venv
+    add_local_bin_to_path
+    run_cmd pipx install uv
+    add_local_bin_to_path
+    if [[ "$DRY_RUN" -eq 1 ]] || command -v uv >/dev/null 2>&1; then
+      return 0
+    fi
+  fi
+  return 1
+}
+
+resolve_python_tool() {
+  if [[ "$PYTHON_TOOL" == "uv" ]] && ! command -v uv >/dev/null 2>&1; then
+    if install_uv_with_pipx_if_possible; then
+      log "= uv will be managed via pipx"
+      return
+    fi
+    log "= uv not found, falling back to venv"
+    PYTHON_TOOL="venv"
+  fi
+}
+
 clone_or_update_repo() {
   if [[ -d "$REPO_DIR/.git" ]]; then
     log "= reuse existing repo $REPO_DIR"
@@ -51,6 +113,8 @@ sync_env_files() {
   fi
 }
 
+ensure_system_deps
+resolve_python_tool
 clone_or_update_repo
 sync_env_files
 

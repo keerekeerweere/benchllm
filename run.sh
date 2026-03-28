@@ -22,6 +22,13 @@ log() {
   printf '%s\n' "$*"
 }
 
+resolve_python_tool() {
+  if [[ "$PYTHON_TOOL" == "uv" ]] && ! command -v uv >/dev/null 2>&1; then
+    log "= uv not found, falling back to venv"
+    PYTHON_TOOL="venv"
+  fi
+}
+
 load_env_file() {
   local path="$1"
   if [[ -f "$path" ]]; then
@@ -106,6 +113,7 @@ if [[ "$PYTHON_TOOL" != "uv" && "$PYTHON_TOOL" != "venv" ]]; then
   exit 1
 fi
 
+resolve_python_tool
 load_env_file "$ROOT_DIR/.env"
 load_env_file "$STACK_ROOT/.env"
 if [[ -n "${HF_TOKEN:-}" ]]; then
