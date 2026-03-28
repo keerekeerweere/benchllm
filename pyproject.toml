@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "benchllm"
+version = "0.1.0"
+description = "Benchmark and deployment playbook tooling for local LLM serving."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "httpx>=0.27.0",
+  "PyYAML>=6.0.0",
+]
+
+[project.scripts]
+benchllm = "benchllm.cli:run_cli"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["benchllm*"]
