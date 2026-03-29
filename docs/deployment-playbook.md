@@ -4,7 +4,7 @@ This playbook turns the benchmark plan into concrete launch profiles for a works
 
 ## Primary recommendations
 
-- Use `vLLM` as the primary OpenAI-compatible backend for current FP8, AWQ, and MoE checkpoints.
+- Use `vLLM` as the primary OpenAI-compatible backend for current AWQ and MoE checkpoints, with larger FP8 profiles treated as experimental on dual 3090s.
 - Use `llama.cpp` as the GGUF fallback path and for targeted constrained-decoding comparisons.
 - Keep embeddings separate from generation. The default profile is a dedicated embedding process using `Qwen/Qwen3-Embedding-4B`.
 - Optimize for `8k` context and `2-4` concurrent interactive sessions first. Expand context only after measuring TTFT and structured-output regressions.
@@ -28,7 +28,7 @@ This playbook turns the benchmark plan into concrete launch profiles for a works
 ## Practical run order
 
 1. Start the embedding service and confirm it is isolated from main inference runs.
-2. Benchmark `vllm-qwen3-coder-next-fp8` and `vllm-devstral-small` first.
+2. Benchmark `vllm-qwen3-coder-next-awq` and `vllm-devstral-small` first.
 3. Benchmark the AWQ MoE profile only after the first two establish a good latency baseline.
 4. Benchmark the `llama.cpp` GGUF fallback once the vLLM winners are known.
 5. Re-run the top 2 profiles with cold starts and then with warm caches.

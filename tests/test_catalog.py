@@ -99,6 +99,17 @@ class CatalogTest(unittest.TestCase):
         self.assertEqual(first.repetition, 1)
         self.assertTrue(first.run_id.startswith("vllm-qwen3-coder-next-fp8__json-small__c1__r1"))
 
+    def test_real_catalog_uses_ream_awq_for_default_qwen3_coder_next_profile(self) -> None:
+        catalog = load_catalog("/home/dbram/work/benchllm/catalogs/dual-3090-openai.yaml")
+
+        profile = catalog.profiles["vllm-qwen3-coder-next-awq"]
+
+        self.assertEqual(profile.model, "cyankiwi/Qwen3-Coder-Next-REAM-AWQ-4bit")
+        self.assertIn("--model", profile.launch.args)
+        self.assertIn("cyankiwi/Qwen3-Coder-Next-REAM-AWQ-4bit", profile.launch.args)
+        self.assertIn("vllm-qwen3-coder-next-awq", catalog.matrix.profiles)
+        self.assertNotIn("vllm-qwen3-coder-next-fp8", catalog.matrix.profiles)
+
 
 if __name__ == "__main__":
     unittest.main()
