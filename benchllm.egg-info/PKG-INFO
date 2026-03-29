@@ -1,3 +1,12 @@
+Metadata-Version: 2.4
+Name: benchllm
+Version: 0.1.0
+Summary: Benchmark and deployment playbook tooling for local LLM serving.
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: httpx>=0.27.0
+Requires-Dist: PyYAML>=6.0.0
+
 # benchllm
 
 `benchllm` is a small benchmark and deployment-playbook project for comparing local LLM serving profiles on a dual RTX 3090 workstation.

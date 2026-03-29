@@ -5,6 +5,7 @@ from pathlib import Path
 
 from benchllm.catalog import build_run_matrix, load_catalog
 
+REPO_ROOT = Path(__file__).resolve().parents[1]
 
 CATALOG_YAML = textwrap.dedent(
     """
@@ -100,7 +101,7 @@ class CatalogTest(unittest.TestCase):
         self.assertTrue(first.run_id.startswith("vllm-qwen3-coder-next-fp8__json-small__c1__r1"))
 
     def test_real_catalog_uses_ream_awq_for_default_qwen3_coder_next_profile(self) -> None:
-        catalog = load_catalog("/home/dbram/work/benchllm/catalogs/dual-3090-openai.yaml")
+        catalog = load_catalog(REPO_ROOT / "catalogs/dual-3090-openai.yaml")
 
         profile = catalog.profiles["vllm-qwen3-coder-next-awq"]
 

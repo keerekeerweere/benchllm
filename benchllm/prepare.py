@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import shlex
 from pathlib import Path
+from typing import Iterable
 
 from benchllm.catalog import Profile, load_catalog
 
@@ -31,24 +32,6 @@ def prepare_runtime_bundle(
     output_dir: str | Path,
 ) -> Path:
     catalog = load_catalog(catalog_path)
-    root = Path(output_dir)
-    launchers_dir = root / "launchers"
-    manifests_dir = root / "manifests"
-    logs_dir = root / "logs"
-    results_dir = root / "results"
-
-    for directory in (root, launchers_dir, manifests_dir, logs_dir, results_dir):
-        directory.mkdir(parents=True, exist_ok=True)
-
-    _write_env_script(root)
-    _write_env_example(root)
-    for profile in catalog.profiles.values():
-        if profile.launch is None:
-            continue
-        launcher_path = launchers_dir / f"{profile.id}.sh"
-        launcher_path.write_text(_render_launcher(profile), encoding="utf-8")
-        launcher_path.chmod(0o755)
-
     manifest = {
         "catalog_path": str(Path(catalog_path).resolve()),
         "profiles": list(catalog.profiles.keys()),
@@ -60,10 +43,40 @@ def prepare_runtime_bundle(
             "repetitions": catalog.matrix.repetitions,
         },
     }
-    (manifests_dir / "runtime-manifest.json").write_text(
-        json.dumps(manifest, indent=2),
-        encoding="utf-8",
+    return prepare_runtime_bundle_from_profiles(
+        catalog.profiles.values(),
+        output_dir,
+        manifest=manifest,
     )
+
+
+def prepare_runtime_bundle_from_profiles(
+    profiles: Iterable[Profile],
+    output_dir: str | Path,
+    *,
+    manifest: dict[str, object] | None = None,
+) -> Path:
+    root = Path(output_dir)
+    launchers_dir = root / "launchers"
+    manifests_dir = root / "manifests"
+    logs_dir = root / "logs"
+    results_dir = root / "results"
+
+    for directory in (root, launchers_dir, manifests_dir, logs_dir, results_dir):
+        directory.mkdir(parents=True, exist_ok=True)
+
+    _write_env_script(root)
+    _write_env_example(root)
+    profile_ids: list[str] = []
+    for profile in profiles:
+        profile_ids.append(profile.id)
+        if profile.launch is None:
+            continue
+        launcher_path = launchers_dir / f"{profile.id}.sh"
+        launcher_path.write_text(_render_launcher(profile), encoding="utf-8")
+        launcher_path.chmod(0o755)
+    runtime_manifest = manifest or {"profiles": profile_ids}
+    (manifests_dir / "runtime-manifest.json").write_text(json.dumps(runtime_manifest, indent=2), encoding="utf-8")
     return root
 
 
@@ -116,6 +129,8 @@ def _render_launcher(profile: Profile) -> str:
         lines.append('if [ -f "$ROOT_DIR/.venvs/vllm/bin/activate" ]; then source "$ROOT_DIR/.venvs/vllm/bin/activate"; fi')
     elif profile.backend == "llama.cpp":
         lines.append('export LLAMA_CPP_ROOT="${LLAMA_CPP_ROOT:-$ROOT_DIR/src/llama.cpp}"')
+    for key, value in profile.launch.env.items():
+        lines.append(f"export {key}={shlex.quote(value)}")
     lines.append(f'exec {command} {args}'.rstrip())
     lines.append("")
     return "\n".join(lines)

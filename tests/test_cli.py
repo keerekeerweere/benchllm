@@ -10,6 +10,7 @@ from pathlib import Path
 
 from benchllm.cli import main
 
+REPO_ROOT = Path(__file__).resolve().parents[1]
 
 CATALOG_YAML = textwrap.dedent(
     """
@@ -69,7 +70,7 @@ class CliTest(unittest.TestCase):
 
             proc = subprocess.run(
                 [sys.executable, "-m", "benchllm.cli", "plan", "--catalog", str(path)],
-                cwd="/home/dbram/work/benchllm",
+                cwd=REPO_ROOT,
                 check=False,
                 capture_output=True,
                 text=True,

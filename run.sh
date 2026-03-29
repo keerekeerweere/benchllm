@@ -10,6 +10,9 @@ VLLM_INSTALL_MODE="${BENCHLLM_VLLM_INSTALL_MODE:-wheel}"
 VLLM_PACKAGE_SPEC="${BENCHLLM_VLLM_PACKAGE_SPEC:-vllm}"
 CUDA_COMPILER_BIN="${BENCHLLM_CUDACXX:-${CUDACXX:-}}"
 CATALOG_PATH="$ROOT_DIR/catalogs/dual-3090-openai.yaml"
+AUTOTUNE_MACHINE="${BENCHLLM_AUTOTUNE_MACHINE:-dual-3090}"
+AUTOTUNE_STRATEGY="${BENCHLLM_AUTOTUNE_STRATEGY:-fast-agentic}"
+RUN_MODE="autotune"
 DRY_RUN=0
 BENCHLLM_REPO="${BENCHLLM_REPO:-$ROOT_DIR}"
 VLLM_REPO="${VLLM_REPO:-https://github.com/vllm-project/vllm.git}"
@@ -17,9 +20,10 @@ LLAMACPP_REPO="${LLAMACPP_REPO:-https://github.com/ggml-org/llama.cpp.git}"
 
 usage() {
   cat <<'EOF'
-Usage: bash run.sh [--root PATH] [--python-tool uv|venv] [--catalog PATH] [--dry-run]
+Usage: bash run.sh [--root PATH] [--python-tool uv|venv] [--catalog PATH] [--machine ID] [--strategy ID] [--prepare-only] [--dry-run]
 
 Bootstraps a self-contained runtime folder for benchllm, vLLM, and llama.cpp.
+Default mode runs benchllm autotune and writes a recommendation bundle.
 EOF
 }
 
@@ -113,6 +117,18 @@ while [[ $# -gt 0 ]]; do
       CATALOG_PATH="$2"
       shift 2
       ;;
+    --machine)
+      AUTOTUNE_MACHINE="$2"
+      shift 2
+      ;;
+    --strategy)
+      AUTOTUNE_STRATEGY="$2"
+      shift 2
+      ;;
+    --prepare-only)
+      RUN_MODE="prepare"
+      shift
+      ;;
     --dry-run)
       DRY_RUN=1
       shift
@@ -198,12 +214,23 @@ fi
 run_cmd cmake -S "$STACK_ROOT/src/llama.cpp" -B "$STACK_ROOT/src/llama.cpp/build" -DGGML_CUDA=ON "-DCMAKE_CUDA_COMPILER=$CUDA_COMPILER_BIN"
 run_cmd cmake --build "$STACK_ROOT/src/llama.cpp/build" -j
 
-run_cmd "$PREPARE_PYTHON" -m benchllm prepare --catalog "$CATALOG_PATH" --output-dir "$STACK_ROOT"
+if [[ "$RUN_MODE" == "prepare" ]]; then
+  run_cmd "$PREPARE_PYTHON" -m benchllm prepare --catalog "$CATALOG_PATH" --output-dir "$STACK_ROOT"
+else
+  run_cmd "$PREPARE_PYTHON" -m benchllm autotune --machine "$AUTOTUNE_MACHINE" --strategy "$AUTOTUNE_STRATEGY" --output-dir "$STACK_ROOT/autotune"
+fi
 
 log ""
 log "Prepared stack root: $STACK_ROOT"
-log "Runtime launchers:"
-log "  $STACK_ROOT/launchers/vllm-qwen3-coder-next-fp8.sh"
-log "  $STACK_ROOT/launchers/vllm-devstral-small.sh"
-log "  $STACK_ROOT/launchers/vllm-qwen-moe-awq.sh"
-log "  $STACK_ROOT/launchers/llamacpp-devstral-q4km.sh"
+if [[ "$RUN_MODE" == "prepare" ]]; then
+  log "Runtime launchers:"
+  log "  $STACK_ROOT/launchers/vllm-qwen3-coder-next-fp8.sh"
+  log "  $STACK_ROOT/launchers/vllm-devstral-small.sh"
+  log "  $STACK_ROOT/launchers/vllm-qwen-moe-awq.sh"
+  log "  $STACK_ROOT/launchers/llamacpp-devstral-q4km.sh"
+else
+  log "Autotune bundle:"
+  log "  $STACK_ROOT/autotune/recommendation.json"
+  log "  $STACK_ROOT/autotune/deployment-manifest.json"
+  log "  $STACK_ROOT/autotune/launchers/"
+fi
