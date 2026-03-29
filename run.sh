@@ -156,7 +156,10 @@ if [[ ! -f "$STACK_ROOT/.env" ]]; then
   run_cmd cp "$ROOT_DIR/.env.example" "$STACK_ROOT/.env"
 fi
 
-clone_if_missing "$BENCHLLM_REPO" "$STACK_ROOT/src/benchllm"
+if [[ ! -d "$BENCHLLM_REPO" ]]; then
+  printf 'benchllm source checkout not found at %s\n' "$BENCHLLM_REPO" >&2
+  exit 1
+fi
 if [[ "$VLLM_INSTALL_MODE" == "source" ]]; then
   clone_if_missing "$VLLM_REPO" "$STACK_ROOT/src/vllm"
 fi
@@ -166,7 +169,7 @@ if [[ "$PYTHON_TOOL" == "uv" ]]; then
   run_cmd uv python install "$PYTHON_VERSION"
   create_venv_if_missing uv "$STACK_ROOT/.venvs/benchllm"
   create_venv_if_missing uv "$STACK_ROOT/.venvs/vllm"
-  run_cmd uv pip install --python "$STACK_ROOT/.venvs/benchllm/bin/python" -e "$STACK_ROOT/src/benchllm"
+  run_cmd uv pip install --python "$STACK_ROOT/.venvs/benchllm/bin/python" -e "$BENCHLLM_REPO"
   if [[ "$VLLM_INSTALL_MODE" == "wheel" ]]; then
     run_cmd uv pip install --python "$STACK_ROOT/.venvs/vllm/bin/python" "$VLLM_PACKAGE_SPEC"
   else
@@ -178,7 +181,7 @@ else
   create_venv_if_missing venv "$STACK_ROOT/.venvs/vllm"
   run_cmd "$STACK_ROOT/.venvs/benchllm/bin/python" -m pip install --upgrade pip
   run_cmd "$STACK_ROOT/.venvs/vllm/bin/python" -m pip install --upgrade pip
-  run_cmd "$STACK_ROOT/.venvs/benchllm/bin/python" -m pip install -e "$STACK_ROOT/src/benchllm"
+  run_cmd "$STACK_ROOT/.venvs/benchllm/bin/python" -m pip install -e "$BENCHLLM_REPO"
   if [[ "$VLLM_INSTALL_MODE" == "wheel" ]]; then
     run_cmd "$STACK_ROOT/.venvs/vllm/bin/python" -m pip install "$VLLM_PACKAGE_SPEC"
   else

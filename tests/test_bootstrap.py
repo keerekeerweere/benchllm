@@ -49,7 +49,10 @@ class BootstrapScriptTest(unittest.TestCase):
         self.assertEqual(proc.returncode, 0, proc.stderr)
         self.assertIn("git clone https://github.com/keerekeerweere/benchllm", proc.stdout)
         self.assertIn("bash", proc.stdout)
-        self.assertIn("run.sh --root", proc.stdout)
+        self.assertIn("bash /tmp", proc.stdout)
+        self.assertIn("/run.sh --python-tool venv --dry-run", proc.stdout)
+        self.assertIn("cat > ", proc.stdout)
+        self.assertIn('/run.sh" <<\'EOF\'', proc.stdout)
 
     def test_install_sh_dry_run_falls_back_to_venv_when_uv_missing(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -101,10 +104,12 @@ class BootstrapScriptTest(unittest.TestCase):
         self.assertEqual(proc.returncode, 0, proc.stderr)
         self.assertIn("uv python install 3.12", proc.stdout)
         self.assertIn("uv venv", proc.stdout)
+        self.assertNotIn(f"git clone /home/dbram/work/benchllm {root}/src/benchllm", proc.stdout)
         self.assertNotIn("git clone https://github.com/vllm-project/vllm.git", proc.stdout)
         self.assertIn("git clone https://github.com/ggml-org/llama.cpp.git", proc.stdout)
         self.assertIn("uv pip install --python", proc.stdout)
         self.assertIn(" vllm", proc.stdout)
+        self.assertIn(" -e /home/dbram/work/benchllm", proc.stdout)
         self.assertIn("python -m benchllm prepare", proc.stdout)
 
     def test_run_sh_dry_run_passes_explicit_cuda_compiler_to_cmake(self) -> None:

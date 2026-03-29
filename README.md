@@ -38,6 +38,14 @@ curl -fsSL https://raw.githubusercontent.com/keerekeerweere/benchllm/main/instal
 It defaults to `/opt/benchllm` under `sudo`, clones this repo, creates `/opt/benchllm/.env`, installs missing `apt` packages when needed on Debian-like systems, and automatically falls back from `uv` to `venv` if `uv` is not installed.
 The default `uv` path provisions Python `3.12` and installs `vllm` from its wheel/package path instead of doing an editable source build.
 
+Installed layout:
+
+- `/opt/benchllm/run.sh` is the easy top-level wrapper after a `sudo` install.
+- `/opt/benchllm/src/benchllm` is the single repo checkout used by the install.
+- `/opt/benchllm/runtime` holds the runtime envs, logs, results, and generated launchers.
+
+The runtime setup no longer clones `benchllm` into `runtime/src`; it installs from the existing checkout in `src/benchllm`.
+
 ## Notes
 
 - The tool assumes an OpenAI-compatible local endpoint for inference.

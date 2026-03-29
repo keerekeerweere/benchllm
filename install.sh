@@ -19,6 +19,13 @@ log() {
   printf '%s\n' "$*"
 }
 
+run_shell() {
+  log "+ $*"
+  if [[ "$DRY_RUN" -eq 0 ]]; then
+    bash -lc "$*"
+  fi
+}
+
 run_cmd() {
   log "+ $*"
   if [[ "$DRY_RUN" -eq 0 ]]; then
@@ -113,12 +120,28 @@ sync_env_files() {
   fi
 }
 
+write_install_root_wrapper() {
+  run_shell "cat > \"$INSTALL_ROOT/run.sh\" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+INSTALL_ROOT=\"$(printf '%s' "$INSTALL_ROOT")\"
+REPO_DIR=\"\$INSTALL_ROOT/src/benchllm\"
+RUNTIME_ROOT=\"\$INSTALL_ROOT/runtime\"
+
+export BENCHLLM_REPO=\"\$REPO_DIR\"
+exec bash \"\$REPO_DIR/run.sh\" --root \"\$RUNTIME_ROOT\" \"\$@\"
+EOF"
+  run_cmd chmod +x "$INSTALL_ROOT/run.sh"
+}
+
 ensure_system_deps
 resolve_python_tool
 clone_or_update_repo
 sync_env_files
+write_install_root_wrapper
 
-bootstrap_cmd=(bash "$REPO_DIR/run.sh" --root "$RUNTIME_ROOT" --python-tool "$PYTHON_TOOL")
+bootstrap_cmd=(bash "$INSTALL_ROOT/run.sh" --python-tool "$PYTHON_TOOL")
 if [[ "$DRY_RUN" -eq 1 ]]; then
   bootstrap_cmd+=(--dry-run)
 fi
