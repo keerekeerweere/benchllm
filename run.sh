@@ -8,6 +8,7 @@ PYTHON_VERSION="${BENCHLLM_PYTHON_VERSION:-3.12}"
 SYSTEM_PYTHON_BIN="${BENCHLLM_SYSTEM_PYTHON_BIN:-python3}"
 VLLM_INSTALL_MODE="${BENCHLLM_VLLM_INSTALL_MODE:-wheel}"
 VLLM_PACKAGE_SPEC="${BENCHLLM_VLLM_PACKAGE_SPEC:-vllm}"
+CUDA_COMPILER_BIN="${BENCHLLM_CUDACXX:-${CUDACXX:-}}"
 CATALOG_PATH="$ROOT_DIR/catalogs/dual-3090-openai.yaml"
 DRY_RUN=0
 BENCHLLM_REPO="${BENCHLLM_REPO:-$ROOT_DIR}"
@@ -24,6 +25,22 @@ EOF
 
 log() {
   printf '%s\n' "$*"
+}
+
+resolve_cuda_compiler() {
+  if [[ -n "$CUDA_COMPILER_BIN" ]]; then
+    export CUDACXX="$CUDA_COMPILER_BIN"
+    return
+  fi
+  if command -v nvcc >/dev/null 2>&1; then
+    CUDA_COMPILER_BIN="$(command -v nvcc)"
+    export CUDACXX="$CUDA_COMPILER_BIN"
+    return
+  fi
+  if [[ -x "/usr/local/cuda/bin/nvcc" ]]; then
+    CUDA_COMPILER_BIN="/usr/local/cuda/bin/nvcc"
+    export CUDACXX="$CUDA_COMPILER_BIN"
+  fi
 }
 
 resolve_python_tool() {
@@ -122,6 +139,7 @@ if [[ "$VLLM_INSTALL_MODE" != "wheel" && "$VLLM_INSTALL_MODE" != "source" ]]; th
 fi
 
 resolve_python_tool
+resolve_cuda_compiler
 load_env_file "$ROOT_DIR/.env"
 load_env_file "$STACK_ROOT/.env"
 if [[ -n "${HF_TOKEN:-}" ]]; then
@@ -169,7 +187,12 @@ else
   PREPARE_PYTHON="$STACK_ROOT/.venvs/benchllm/bin/python"
 fi
 
-run_cmd cmake -S "$STACK_ROOT/src/llama.cpp" -B "$STACK_ROOT/src/llama.cpp/build" -DGGML_CUDA=ON
+if [[ -z "${CUDA_COMPILER_BIN:-}" ]]; then
+  printf 'CUDA compiler not found. Set BENCHLLM_CUDACXX or CUDACXX to your nvcc path, e.g. /usr/local/cuda/bin/nvcc.\n' >&2
+  exit 1
+fi
+
+run_cmd cmake -S "$STACK_ROOT/src/llama.cpp" -B "$STACK_ROOT/src/llama.cpp/build" -DGGML_CUDA=ON "-DCMAKE_CUDA_COMPILER=$CUDA_COMPILER_BIN"
 run_cmd cmake --build "$STACK_ROOT/src/llama.cpp/build" -j
 
 run_cmd "$PREPARE_PYTHON" -m benchllm prepare --catalog "$CATALOG_PATH" --output-dir "$STACK_ROOT"
